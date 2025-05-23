@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Para Maylin ❤️</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Parisienne&display=swap');
+
+   body {
+  margin: 0; padding: 0;
+  background: #f3e8dc; /* color vintage papel */
+  font-family: Arial, sans-serif;
+  color: #5b3924;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  user-select: none;
+}
+
+  #container {
+    width: 90%;
+    max-width: 700px;
+    background: #f7f1e1;
+    border: 2px solid #c9b18a;
+    padding: 30px 40px;
+    border-radius: 15px;
+    box-shadow: 0 0 15px rgba(101, 67, 33, 0.3);
+    position: relative;
+    text-align: center;
+  }
+
+  #typingText {
+    font-size: 24px;
+    min-height: 110px;
+    line-height: 1.4;
+  }
+
+  #continueMessage {
+    position: absolute;
+    bottom: 20px;
+    width: 100%;
+    font-size: 16px;
+    color: rgba(91, 57, 36, 0.7);
+    background: rgba(243, 232, 220, 0.7);
+    padding: 8px 0;
+    border-radius: 0 0 15px 15px;
+    cursor: pointer;
+    user-select: none;
+    display: none;
+  }
+
+  #textBox {
+    margin-top: 20px;
+    font-size: 20px;
+    background: #f9f5ee;
+    padding: 20px 25px;
+    border-radius: 12px;
+    border: 1.5px solid #c9b18a;
+    box-shadow: inset 2px 2px 8px #d1bca5;
+    min-height: 180px;
+    overflow-y: auto;
+    color: #4a321b;
+    display: none;
+  }
+
+  .text-animate-in {
+    animation: slideInFromTop 0.7s forwards;
+  }
+
+  .text-animate-out {
+    animation: slideOutToTop 0.7s forwards;
+  }
+
+  @keyframes slideInFromTop {
+    0% {
+      opacity: 0;
+      transform: translateY(-50px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes slideOutToTop {
+    0% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    100% {
+      opacity: 0;
+      transform: translateY(-50px);
+    }
+  }
+
+  #finalSection {
+    display: none;
+    margin-top: 25px;
+    color: #5b3924;
+  }
+
+  #finalText {
+    font-size: 22px;
+    margin-bottom: 20px;
+    font-style: italic;
+  }
+
+  #spotifyBtn {
+    background: #1db954;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    font-size: 18px;
+    border-radius: 25px;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(29, 185, 84, 0.6);
+    transition: background-color 0.3s ease;
+  }
+
+  #spotifyBtn:hover {
+    background-color: #14833b;
+  }
+
+  canvas {
+    display: block;
+    margin: 0 auto;
+    border-radius: 10px;
+    background: #f9f5ee;
+    box-shadow: 0 0 15px rgba(101, 67, 33, 0.15);
+  }
+</style>
+</head>
+<body>
+
+<div id="container">
+  <div id="typingText"></div>
+  <div id="continueMessage">toca cualquier parte para continuar</div>
+  <div id="textBox"></div>
+  <div id="finalSection">
+    <div id="finalText">En el silencio, lo único capaz de expresar lo inexpresable es la música.</div>
+    <canvas id="flowerCanvas" width="400" height="300"></canvas>
+    <button id="spotifyBtn">Escuchar playlist</button>
+  </div>
+</div>
+
+<script>
+// Frase inicial para animar letra por letra
+const initialPhrase = "Desde el día de la primavera, todo cambió. Tu voz me calma, tu sonrisa me rompe. Esta página es solo para ti, porque no hay nadie como tú, Maylin.";
+
+const texts = [
+`Te necesito porque te quiero
+
+No te quiero porque te necesito Maylin. No eres un vacío que vine a llenar, ni una respuesta a mis miedos. No estoy contigo por soledad, por costumbre, ni por buscar una salida. Te necesito porque te quiero. Porque en ti descubrí una forma de querer que no se basa en depender, sino en elegir. Y te elijo, aun cuando no estoy obligado a hacerlo.
+
+Cuando estoy contigo, no me siento menos solo: me siento más completo. Más yo. Te necesito porque te quiero, porque cuando uno quiere de verdad, se vuelve inevitable anhelar la presencia de quien nos hace sentir en casa.
+
+No necesito que seas perfecta. Solo tú, con tus silencios, con tu risa, con tus días buenos eh incluso los que no los son. Te necesito porque en este mundo incierto, tú te volviste una certeza bonita.
+
+Y aún si la vida nos aleja un día, aún si no estás a mi lado, seguiré sabiendo que no te quise porque me hacías falta. Me harás falta porque te quise con todo lo que soy.`,
+`
+Si supieras toda la cantidad de emociones y sentimientos que se alborotan en mí con solo verte, hablar contigo y compartir recuerdo, dejarías de dudar que me caes mal. Porque no es posible que alguien que provoca tanta vida interior, tantas dudas y certezas, tanto ruido y calma a la vez, no sea alguien importante o desagradable para mí.
+
+En realidad, cada instante contigo es una mezcla compleja de sensaciones que se entrelazan y que no siempre sé cómo nombrar. A veces es alegría pura, a veces miedo, a veces una esperanza temblorosa. Y eso me hace vulnerable, porque abrirme a sentir tanto es exponerse a que me veas no solo como soy, sino también como un mar de contradicciones. Pero esa vulnerabilidad, es lo que me conecta contigo, es lo que hace que tu presencia nunca la vaya a poder olvidar, siempre tendrás un lugar en mi corazón.
+
+Así que si alguna vez dudaste de lo que siento, de que me caes bien o de lo que significas para mi, sentir ese latido silencioso que nace cuando estás cerca, porque ahí está la verdad que las palabras nunca podrán expresar.`,
+`
+Tú eres el sentido que le doy a mis días, incluso en medio del caos y la incertidumbre. Porque a veces la vida se siente como un torbellino donde nada parece tener forma ni rumbo, pero entonces apareces tú, y todo encuentra un pequeño anclaje, un punto de luz donde descansar.
+
+Es curioso cómo alguien puede ser la calma en medio de la tormenta, un refugio invisible que no necesito buscar, porque simplemente estás ahí, y con eso basta para que todo cobre sentido. Quererte no es solo un sentimiento; es una decisión diaria, una esperanza que se sostiene pese a todo, un acto silencioso.
+
+Y aunque a veces dude, aunque el miedo me susurre que todo puede desvanecerse, sigo eligiéndote porque en ti encuentro la razón para seguir, para seguir esforzándome, para creer que en medio de la incertidumbre también puede existir algo seguro y hermoso. Algo como tú...`,
+`
+Elegí quererte porque contigo puedo construir algo que trascienda lo que somos hoy, algo que vaya más allá de nuestras imperfecciones, dudas y miedos. No se trata solo de estar juntos, sino de crear un vínculo que resista el tiempo, que crezca con las experiencias y que se nutra del respeto, la comprensión y la honestidad.
+
+Contigo siento que puedo ser mejor, que mis sueños y los tuyos pueden entrelazarse para formar un camino compartido. Elegirte no es una casualidad ni un capricho; es una apuesta consciente a que lo que construyamos juntos tenga un significado profundo, que deje una huella en nosotros y en lo que queremos ser.
+
+Porque quererte también incluye construir, y contigo quiero levantar un mundo donde la autenticidad sea la base, y la confianza el cimiento. Esa es la razón por la que te elegí y sigo eligiendo, día tras día.`,
+`
+Te quiero como a un silencio profundo, ese espacio donde las palabras sobran y solo queda el latir del alma. No siempre necesito decir todo, porque a veces el afecto más sincero se expresa simplemente con estar, con compartir ese instante donde el ruido del mundo y de mi cabeza desaparece y quedamos solo tú y yo, conectados más allá de lo visible.
+
+Es en ese silencio donde siento la verdad de lo que somos, donde no hace falta justificar nada ni explicarlo todo. Solo estar juntos, sintiendo la presencia del otro como un pulso constante, una calma que envuelve y sostiene.
+
+Quererte así es aceptar que no siempre se necesita llenar el vacío con palabras, que el amor puede ser un susurro mudo y a la vez el sonido más fuerte que existe dentro de mí.`,
+`
+Te quiero en este absurdo del mundo, porque contigo encuentro sentido aunque no haya ninguna razón. En un universo que es caótico, sin lógica ni propósito claro, tu presencia es esa paradoja que me permite seguir creyendo, seguir sintiendo.
+
+Es como si, en medio de lo absurdo, nuestro cariño fuera un acto de rebeldía, una afirmación valiente de que podemos crear significado incluso cuando todo parece carecer de él. No busco razones ni explicaciones, solo la certeza de que estar contigo transforma el sinsentido en algo hermoso y valioso.
+
+Quererte así, en este absurdo, es aceptar que es raro y maravilloso a la vez, un hecho que desafía toda lógica pero que no cambiaría por nada en el mundo.`,
+`
+Gracias por ser la razón de mi sonrisa, la calma en mi tormenta y el motivo por el cual sigo creyendo en algo bueno en este mundo.
+
+Con todo mi corazón,
+Emmanuel.
+`];
+
+// Animación letra por letra inicial
+const typingText = document.getElementById('typingText');
+const continueMessage = document.getElementById('continueMessage');
+const textBox = document.getElementById('textBox');
+const finalSection = document.getElementById('finalSection');
+const spotifyBtn = document.getElementById('spotifyBtn');
+
+let index = 0;
+let charIndex = 0;
+let isTyping = true;
+
+function typeInitialText() {
+  if (charIndex < initialPhrase.length) {
+    typingText.textContent += initialPhrase.charAt(charIndex);
+    charIndex++;
+    setTimeout(typeInitialText, 50);
+  } else {
+    isTyping = false;
+    continueMessage.style.display = 'block';
+  }
+}
+
+typeInitialText();
+
+// Para mostrar los textos uno a uno con animación al tocar
+let currentTextIndex = 0;
+let isAnimating = false;
+
+function showNextText() {
+  if (isAnimating) return;
+  isAnimating = true;
+
+  if (currentTextIndex === 0) {
+    // Ocultar texto inicial y mostrar caja de textos
+    continueMessage.style.display = 'none';
+    typingText.style.display = 'none';
+    textBox.style.display = 'block';
+  }
+
+  if (currentTextIndex < texts.length) {
+    // Animar salida texto anterior si existe
+    if (textBox.textContent.length > 0) {
+      textBox.classList.remove('text-animate-in');
+      textBox.classList.add('text-animate-out');
+
+      setTimeout(() => {
+        textBox.textContent = texts[currentTextIndex];
+        textBox.classList.remove('text-animate-out');
+        textBox.classList.add('text-animate-in');
+        currentTextIndex++;
+        isAnimating = false;
+      }, 700);
+    } else {
+      // Primera vez que aparece texto
+      textBox.textContent = texts[currentTextIndex];
+      textBox.classList.add('text-animate-in');
+      currentTextIndex++;
+      isAnimating = false;
+    }
+  } else {
+    // Terminamos textos, ocultamos todo y mostramos animación final
+    textBox.classList.remove('text-animate-in');
+    textBox.classList.add('text-animate-out');
+    setTimeout(() => {
+      textBox.style.display = 'none';
+      continueMessage.style.display = 'none';
+      finalSection.style.display = 'block';
+      startFlowerAnimation();
+    }, 700);
+  }
+}
+
+document.body.addEventListener('click', () => {
+  if (isTyping) return;
+  showNextText();
+});
+
+// --- Animación de flores en canvas ---
+
+const canvas = document.getElementById('flowerCanvas');
+const ctx = canvas.getContext('2d');
+
+function drawFlower(x, y, size, petals, color) {
+  ctx.save();
+  ctx.translate(x, y);
+  ctx.fillStyle = color;
+  for (let i = 0; i < petals; i++) {
+    ctx.rotate((2 * Math.PI) / petals);
+    ctx.beginPath();
+    ctx.ellipse(0, size / 2, size / 6, size / 2, 0, 0, 2 * Math.PI);
+    ctx.fill();
+  }
+  ctx.beginPath();
+  ctx.arc(0, 0, size / 4, 0, 2 * Math.PI);
+  ctx.fillStyle = '#eaa8a8';
+  ctx.fill();
+  ctx.restore();
+}
+
+function startFlowerAnimation() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  const flowers = [
+    { x: 50, y: 140, size: 60, petals: 6, color: '#f2b5b5' },
+    { x: 130, y: 90, size: 50, petals: 5, color: '#f7d9d9' },
+    { x: 210, y: 180, size: 70, petals: 7, color: '#f5bebe' },
+    { x: 290, y: 130, size: 60, petals: 6, color: '#f9dede' },
+    { x: 350, y: 200, size: 50, petals: 5, color: '#f4cfcf' },
+    { x: 100, y: 210, size: 55, petals: 6, color: '#f1b7b7' }
+  ];
+
+  flowers.forEach(f => {
+    drawFlower(f.x, f.y, f.size, f.petals, f.color);
+  });
+}
+
+// --- Botón Spotify ---
+
+spotifyBtn.addEventListener('click', () => {
+  window.open('https://open.spotify.com/playlist/1iznouqGNXhu9wZbXuikqK?si=b7c0ea3af0d54032&pt=d976b9e7adcbbd1e30efada09f02a73d', '_blank');
+});
+</script>
+
+</body>
+</html>
