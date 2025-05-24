@@ -5,132 +5,137 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Para Maylin ❤️</title>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Parisienne&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Parisienne&display=swap');
 
-   body {
-  margin: 0; padding: 0;
-  background: #f3e8dc; /* color vintage papel */
+html, body {
+  margin: 0;
+  padding: 0;
+  background: #f3e8dc;
   font-family: Arial, sans-serif;
   color: #5b3924;
-  overflow: hidden;
+  overflow-x: hidden;
+  height: 100%;
+  user-select: none;
+  touch-action: manipulation;
+}
+
+body {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
-  user-select: none;
+  min-height: 100vh;
+  box-sizing: border-box;
+  padding: 12px;
 }
 
-  #container {
-    width: 90%;
-    max-width: 700px;
-    background: #f7f1e1;
-    border: 2px solid #c9b18a;
-    padding: 30px 40px;
-    border-radius: 15px;
-    box-shadow: 0 0 15px rgba(101, 67, 33, 0.3);
-    position: relative;
-    text-align: center;
-  }
+#container {
+  width: 100%;
+  max-width: 720px;
+  background: #f7f1e1;
+  border: 2px solid #c9b18a;
+  padding: 24px;
+  border-radius: 15px;
+  box-shadow: 0 0 15px rgba(101, 67, 33, 0.3);
+  text-align: center;
+  box-sizing: border-box;
+}
 
-  #typingText {
-    font-size: 24px;
-    min-height: 110px;
-    line-height: 1.4;
-  }
+#typingText {
+  font-size: 1.2rem;
+  min-height: 100px;
+  line-height: 1.5;
+  padding: 0 10px;
+  word-wrap: break-word;
+}
 
-  #continueMessage {
-    position: absolute;
-    bottom: 20px;
-    width: 100%;
-    font-size: 16px;
-    color: rgba(91, 57, 36, 0.7);
-    background: rgba(243, 232, 220, 0.7);
-    padding: 8px 0;
-    border-radius: 0 0 15px 15px;
-    cursor: pointer;
-    user-select: none;
-    display: none;
-  }
+#continueMessage {
+  position: relative;
+  margin-top: 15px;
+  width: 100%;
+  font-size: 1rem;
+  color: rgba(91, 57, 36, 0.7);
+  background: rgba(243, 232, 220, 0.7);
+  padding: 8px 0;
+  border-radius: 10px;
+  cursor: pointer;
+  user-select: none;
+  display: none;
+}
 
-  #textBox {
-    margin-top: 20px;
-    font-size: 20px;
-    background: #f9f5ee;
-    padding: 20px 25px;
-    border-radius: 12px;
-    border: 1.5px solid #c9b18a;
-    box-shadow: inset 2px 2px 8px #d1bca5;
-    min-height: 180px;
-    overflow-y: auto;
-    color: #4a321b;
-    display: none;
-  }
+#textBox {
+  margin-top: 20px;
+  font-size: 1.05rem;
+  background: #f9f5ee;
+  padding: 18px 20px;
+  border-radius: 12px;
+  border: 1.5px solid #c9b18a;
+  box-shadow: inset 2px 2px 8px #d1bca5;
+  max-height: 60vh;
+  overflow-y: auto;
+  color: #4a321b;
+  display: none;
+  line-height: 1.5;
+  text-align: left;
+}
 
-  .text-animate-in {
-    animation: slideInFromTop 0.7s forwards;
-  }
+.text-animate-in {
+  animation: slideInFromTop 0.7s forwards;
+}
 
-  .text-animate-out {
-    animation: slideOutToTop 0.7s forwards;
-  }
+.text-animate-out {
+  animation: slideOutToTop 0.7s forwards;
+}
 
-  @keyframes slideInFromTop {
-    0% {
-      opacity: 0;
-      transform: translateY(-50px);
-    }
-    100% {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
+@keyframes slideInFromTop {
+  0% { opacity: 0; transform: translateY(-50px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
 
-  @keyframes slideOutToTop {
-    0% {
-      opacity: 1;
-      transform: translateY(0);
-    }
-    100% {
-      opacity: 0;
-      transform: translateY(-50px);
-    }
-  }
+@keyframes slideOutToTop {
+  0% { opacity: 1; transform: translateY(0); }
+  100% { opacity: 0; transform: translateY(-50px); }
+}
 
-  #finalSection {
-    display: none;
-    margin-top: 25px;
-    color: #5b3924;
-  }
+#finalSection {
+  display: none;
+  margin-top: 25px;
+  color: #5b3924;
+}
 
-  #finalText {
-    font-size: 22px;
-    margin-bottom: 20px;
-    font-style: italic;
-  }
+#finalText {
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+  font-style: italic;
+  padding: 0 10px;
+}
 
-  #spotifyBtn {
-    background: #1db954;
-    color: white;
-    border: none;
-    padding: 12px 24px;
-    font-size: 18px;
-    border-radius: 25px;
-    cursor: pointer;
-    box-shadow: 0 4px 8px rgba(29, 185, 84, 0.6);
-    transition: background-color 0.3s ease;
-  }
+#spotifyBtn {
+  background: #1db954;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  font-size: 1rem;
+  border-radius: 25px;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(29, 185, 84, 0.6);
+  transition: background-color 0.3s ease;
+  margin-top: 15px;
+}
 
-  #spotifyBtn:hover {
-    background-color: #14833b;
-  }
+#spotifyBtn:hover {
+  background-color: #14833b;
+}
 
-  canvas {
-    display: block;
-    margin: 0 auto;
-    border-radius: 10px;
-    background: #f9f5ee;
-    box-shadow: 0 0 15px rgba(101, 67, 33, 0.15);
-  }
+canvas {
+  display: block;
+  margin: 0 auto;
+  border-radius: 10px;
+  background: #f9f5ee;
+  box-shadow: 0 0 15px rgba(101, 67, 33, 0.15);
+  width: 100%;
+  height: auto;
+  max-height: 40vh;
+}
 </style>
 </head>
 <body>
@@ -322,3 +327,4 @@ spotifyBtn.addEventListener('click', () => {
 
 </body>
 </html>
+
